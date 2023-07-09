@@ -43,7 +43,7 @@ function NotificationTable() {
     }
 
     const handleCopyAction = (id) => {
-        let toCopy = { ...notifications.find(({ id: _id }) => id === _id) }
+        let toCopy = { ...notifications.find(notification => notification.id === id) }
         setNotifications([...notifications, { ...toCopy, id: notifications.length + 1, title: `${toCopy.title} -copy` }])
         console.log(toCopy);
     }

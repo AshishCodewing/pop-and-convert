@@ -23,7 +23,7 @@ const infoCardDatas = [
 function Welcome() {
     const navObj = useContext(NavigationContext)
     return (
-        <div className="mx-auto w-full bg-background h-full">
+        <>
             <div className="px-8 container mx-auto py-8">
                 <div className="flex container flex-col-reverse justify-between items-center p-6 mx-auto gap-5 bg-white cus-boxShadow rounded lg:flex-row md:p-16 md:gap-16">
                     <div className="space-y-4 md:width-1/2">
@@ -56,7 +56,7 @@ function Welcome() {
                     )
                 })}
             </div>
-        </div>
+        </>
     )
 }
 

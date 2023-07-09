@@ -7,7 +7,9 @@ function App() {
   return (
     <>
       <DashHeader />
-      <PageComponent />
+      <div className="mx-auto w-full bg-background h-full">
+        <PageComponent />
+      </div>
     </>
   )
 }

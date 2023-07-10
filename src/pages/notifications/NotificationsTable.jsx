@@ -32,11 +32,9 @@ const defaultNotifications = [
     }
 ]
 
-function NotificationTable() {
+function NotificationTable({searchQuery}) {
     const [notifications, setNotifications] = useState(defaultNotifications)
     const [selectedItems, setSelectedItems] = useState([])
-
-    console.log(notifications);
 
     function selectAll() {
         selectedItems.length === notifications.length ? setSelectedItems([]) : setSelectedItems(notifications.map(notification => notification.id))
@@ -79,7 +77,7 @@ function NotificationTable() {
                 </tr>
             </thead>
             <tbody>
-                {notifications.map(({ id, title, type, stats, status }) => {
+                {notifications.filter(notification => notification.title.toLowerCase().includes(searchQuery)).map(({ id, title, type, stats, status }) => {
                     return (
                         <tr key={id} className="border-b border-borderLight">
                             <td className="px-6 py-4 text-sm font-medium text-fontDark text-left">

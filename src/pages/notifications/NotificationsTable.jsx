@@ -7,34 +7,45 @@ const defaultNotifications = [
         title: "Notification 1",
         type: "sticky",
         stats: 300,
-        status: true,
+        status: "inactive",
     },
     {
         id: 2,
         title: "Notification 2",
         type: "popup",
         stats: 400,
-        status: false,
+        status: "inactive",
     },
     {
         id: 3,
         title: "Notification 3",
         type: "popup",
         stats: 500,
-        status: true,
+        status: "active",
     },
     {
         id: 4,
         title: "Notification 4",
         type: "popup",
         stats: 600,
-        status: true,
+        status: "active",
     }
 ]
 
-function NotificationTable({searchQuery}) {
+function NotificationTable({ searchQuery }) {
+
     const [notifications, setNotifications] = useState(defaultNotifications)
+
     const [selectedItems, setSelectedItems] = useState([])
+
+    const searchFilters = ["title", "type", "stats", "status"];
+
+    let searchedNotification = notifications.filter((notification) => {
+        return (
+            searchFilters.some(searchFilter => notification[searchFilter].toString().toLowerCase().includes(searchQuery.toLowerCase()))
+        )
+    }
+    )
 
     function selectAll() {
         selectedItems.length === notifications.length ? setSelectedItems([]) : setSelectedItems(notifications.map(notification => notification.id))
@@ -50,14 +61,14 @@ function NotificationTable({searchQuery}) {
         setNotifications(prevNotifications => prevNotifications.filter(prevNotification => id !== prevNotification.id))
     }
 
-
     function toggleStatus(id) {
         setNotifications(prevNotifications => {
             return prevNotifications.map(prevNotification => {
-                return prevNotification.id === id ? { ...prevNotification, status: !prevNotification.status } : prevNotification
+                return prevNotification.id === id ? { ...prevNotification, status: prevNotification.status === "active" ? "inactive" : "active" } : prevNotification
             })
         })
     }
+
     return (
         <table className="min-w-full leading-normal cus-boxShadow">
             <thead>
@@ -77,7 +88,7 @@ function NotificationTable({searchQuery}) {
                 </tr>
             </thead>
             <tbody>
-                {notifications.filter(notification => notification.title.toLowerCase().includes(searchQuery)).map(({ id, title, type, stats, status }) => {
+                {searchedNotification.map(({ id, title, type, stats, status }) => {
                     return (
                         <tr key={id} className="border-b border-borderLight">
                             <td className="px-6 py-4 text-sm font-medium text-fontDark text-left">
@@ -104,7 +115,7 @@ function NotificationTable({searchQuery}) {
                                 <input type="checkbox"
                                     name="status"
                                     id="status"
-                                    checked={status}
+                                    checked={status === "active" ? true : false}
                                     onChange={() => toggleStatus(id)}
                                 />
                             </td>

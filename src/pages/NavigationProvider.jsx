@@ -10,10 +10,14 @@ function NavigationProvider(props) {
         window.history.pushState(null, null, newPathname);
     };
 
+    function navigateBack() {
+        window.history.back();
+    }
+
     useEffect(() => {
         function handlePopState() {
             setPathname(window.location.pathname);
-        };
+        }
 
         window.addEventListener('popstate', handlePopState);
 
@@ -23,7 +27,7 @@ function NavigationProvider(props) {
     }, []);
 
     return (
-        <NavigationContext.Provider value={{ pathname, navigate }}>
+        <NavigationContext.Provider value={{ pathname, navigate, navigateBack }}>
             {props.children}
         </NavigationContext.Provider>
     )

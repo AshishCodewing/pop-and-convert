@@ -2,6 +2,7 @@ import Welcome from './welcome'
 import NavigationProvider from "./NavigationProvider";
 import Route from "./Route";
 import Notifications from "./notifications";
+import AddNotifications from './addNotification';
 
 const screens = [
     {
@@ -11,6 +12,10 @@ const screens = [
     {
         href: '/notifications',
         page: () => <Notifications />
+    },
+    {
+        href: '/add-notifications',
+        page: () => <AddNotifications />
     }
 ]
 

@@ -1,6 +1,7 @@
 import NotificationTable from "./NotificationsTable";
 import Icon from "../../assets/icons";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { NavigationContext } from "../NavigationProvider";
 
 
 function Notifications() {
@@ -9,6 +10,9 @@ function Notifications() {
     function handleChange(e) {
         setSearchQuery(e.target.value);
     }
+
+    const navObj = useContext(NavigationContext);
+    console.log(navObj);
 
     return (
         <>
@@ -24,7 +28,7 @@ function Notifications() {
                             />
                             <button className="absolute top-0 left-0 h-full py-3 px-4"><Icon icon="search" /></button>
                         </div>
-                        <button className="text-sm text-white bg-primary py-3 px-6 font-semibold inline-block rounded hover:opacity-80 ease-in duration-200">Add Notification</button>
+                        <button className="text-sm text-white bg-primary py-3 px-6 font-semibold inline-block rounded hover:opacity-80 ease-in duration-200" onClick={() => navObj.navigate('/add-notifications')}>Add Notification</button>
                     </div>
                 </div>
                 <NotificationTable 

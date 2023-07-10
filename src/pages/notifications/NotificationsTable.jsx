@@ -36,6 +36,8 @@ function NotificationTable({searchQuery}) {
     const [notifications, setNotifications] = useState(defaultNotifications)
     const [selectedItems, setSelectedItems] = useState([])
 
+    console.log(notifications.filter(notification => notification.title.toLowerCase().includes(searchQuery)));
+
     function selectAll() {
         selectedItems.length === notifications.length ? setSelectedItems([]) : setSelectedItems(notifications.map(notification => notification.id))
     }

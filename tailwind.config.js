@@ -19,7 +19,8 @@ export default {
         fontDark: 'hsl(221, 38%, 11%)',
         fontLight: 'hsl(210, 10%, 26%)',
         borderLight: '#E0E9EC',
-        background: 'hsl(210, 40%, 98%)'
+        background: 'hsl(210, 40%, 98%)',
+        placeholder: 'hsl(0, 0%, 67%)'
       }
     },
   },

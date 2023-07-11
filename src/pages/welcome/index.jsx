@@ -32,7 +32,7 @@ function Welcome() {
                             We're glad you're here. This platform is designed to provide you with all the tools and resources you need to be a successful coach. Whether you're new to coaching or a seasoned pro, we're confident that you'll find everything you need here to help your athletes.
                         </p>
                         <div className="flex flex-col gap-3 md:flex-row">
-                            <button className="text-sm text-white bg-primary py-3 px-6 font-semibold inline-block rounded hover:opacity-80 ease-in duration-200">Create New Notification</button>
+                            <button className="text-sm text-white bg-primary py-3 px-6 font-semibold inline-block rounded hover:opacity-80 ease-in duration-200" onClick={() => navObj.navigate('/add-notifications')}>Create New Notification</button>
                             <button className="text-sm text-white bg-primary py-3 px-6 font-semibold inline-block rounded hover:opacity-80 ease-in duration-200" onClick={() => navObj.navigate('/notifications')}>View All Notification</button>
                         </div>
                     </div>

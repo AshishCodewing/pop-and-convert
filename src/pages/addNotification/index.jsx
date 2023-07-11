@@ -8,7 +8,7 @@ function AddNotifications() {
         <>
             <div className="px-8 container mx-auto py-8">
                 <div className="flex flex-col items-start justify-between mb-6 gap-6 md:flex-row md:items-center">
-                    <button className="flex items-center gap-1.5 text-fontDark font-medium" onClick={() => navObj.navigate('/notifications')}><Icon icon="arrowLeft" />Back</button>
+                    <button className="flex items-center gap-1.5 text-fontDark font-medium" onClick={() => navObj.navigateBack()}><Icon icon="arrowLeft" />Back</button>
                     <div className="flex gap-4 items-center">
                         <button className='text-sm text-primary bg-transparent border border-primary py-3 px-6 font-semibold inline-block rounded hover:opacity-80 ease-in duration-200'>Save As Draft</button>
                         <button className='text-sm text-white bg-primary py-3 px-6 font-semibold inline-block rounded hover:opacity-80 ease-in duration-200'>Publish</button>

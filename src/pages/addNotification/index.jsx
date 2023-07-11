@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { NavigationContext } from "../NavigationProvider";
 
-import Icon from '../../assets/icons'
+import Icon from '../../assets/icons';
 function AddNotifications() {
     const navObj = useContext(NavigationContext)
     return (

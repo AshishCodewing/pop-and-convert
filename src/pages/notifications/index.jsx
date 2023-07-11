@@ -17,7 +17,7 @@ function Notifications() {
     return (
         <>
             <div className="px-8 container mx-auto py-8">
-                <div className="flex flex-col justify-between items-start mb-6 gap-6 md:flex-row mb:items-center">
+                <div className="flex flex-col justify-between items-start mb-6 gap-6 md:flex-row md:items-center">
                     <h1 className="text-2xl text-fontDark font-semibold">All Notifications</h1>
                     <div className="flex flex-col gap-3 items-start md:flex-row">
                         <div className="relative">

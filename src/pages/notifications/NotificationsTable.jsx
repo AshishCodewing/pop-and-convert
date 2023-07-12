@@ -15,7 +15,7 @@ function NotificationTable({ searchQuery, currentNotifications }) {
         )
     }
     )
-
+    // update notifications on page change
     useMemo(() => {
         setNotifications(currentNotifications)
     }, [currentNotifications])
@@ -65,7 +65,7 @@ function NotificationTable({ searchQuery, currentNotifications }) {
                     {searchedNotification.map(({ id, title, type, stats, status }) => {
                         return (
                             <tr key={id} className="border-b border-borderLight">
-                                <td className="px-6 py-4 text-sm font-medium text-fontDark text-left">
+                                <td className="px-6 py-4 text-sm font-medium text-fontDark text-left max-w-sm">
                                     <div className="flex gap-3 items-center">
                                         <input type="checkbox"
                                             name="checkbox"
@@ -74,7 +74,7 @@ function NotificationTable({ searchQuery, currentNotifications }) {
                                                 setSelectedItems(selectedItems.includes(id) ? selectedItems.filter(_id => _id !== id) : [...selectedItems, id])
                                             }}
                                         />
-                                        {title}
+                                        {id} - {title}
                                     </div>
                                 </td>
                                 <td className="px-6 py-4 text-sm font-medium text-fontDark text-left">

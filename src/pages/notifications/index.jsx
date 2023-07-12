@@ -12,16 +12,24 @@ function Notifications() {
     const [currentPage, setCurrentPage] = useState(1);
     const [notificationPerPage] = useState(10);
 
+    console.log(`currentpage : ${currentPage}`);
     // Get current Notifications
     const indexOfLastNotification = currentPage * notificationPerPage;
-    console.log(indexOfLastNotification);
+    console.log(`index of last notification: ${indexOfLastNotification}`);
+
     const indexOfFirstNotification = indexOfLastNotification - notificationPerPage;
-    console.log(indexOfFirstNotification);
+    console.log(`index of first notification: ${indexOfFirstNotification}`);
+
+
     const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification)
+
+    console.log(currentNotifications);
 
     // Change Page
     function paginate(pageNumber) {
         setCurrentPage(pageNumber)
+        console.log('clicked');
+        console.log(pageNumber);
     }
 
     // Search Query
@@ -32,7 +40,6 @@ function Notifications() {
     }
 
     const navObj = useContext(NavigationContext);
-    console.log(navObj);
 
     return (
         <>
@@ -56,7 +63,9 @@ function Notifications() {
                     currentNotifications={currentNotifications}
                 />
                 <Pagination
-
+                    notificationPerPage={notificationPerPage}
+                    totalNotification = {notifications.length}
+                    handlePageChange={paginate}
                 />
 
             </div>

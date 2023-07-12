@@ -1,24 +1,54 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Icon from "../../assets/icons";
+import Pagination from "../../components/Pagination";
+import seed from "./seed";
 
-function NotificationTable({ searchQuery, currentNotifications }) {
 
-    const [notifications, setNotifications] = useState(currentNotifications)
+function NotificationTable({ searchQuery }) {
+    console.log(searchQuery);
 
-    const [selectedItems, setSelectedItems] = useState([])
+    const [notifications, setNotifications] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [notificationPerPage] = useState(10);
+
+    // Get current Notifications
+    const indexOfLastNotification = currentPage * notificationPerPage;
+    console.log(`index of last notification: ${indexOfLastNotification}`);
+
+    const indexOfFirstNotification = indexOfLastNotification - notificationPerPage;
+    console.log(`index of first notification: ${indexOfFirstNotification}`);
+
+
+    useEffect(() => {
+        setNotifications(seed)
+    }, [])
 
     const searchFilters = ["title", "type", "stats", "status"];
 
-    let searchedNotification = notifications.filter((notification) => {
+    let searchedNotification = searchQuery === null || searchQuery.trim() === "" ? seed : notifications.filter((notification) => {
         return (
             searchFilters.some(searchFilter => notification[searchFilter].toString().toLowerCase().includes(searchQuery.toLowerCase()))
         )
     }
     )
-    // update notifications on page change
-    useMemo(() => {
-        setNotifications(currentNotifications)
-    }, [currentNotifications])
+
+    console.log(searchedNotification);
+
+    useEffect(() => {
+        setNotifications(searchedNotification)
+    }, [searchQuery])
+
+    console.log(`currentpage : ${currentPage}`);
+
+
+    // Change Page
+    function paginate(pageNumber) {
+        setCurrentPage(pageNumber)
+        console.log('clicked');
+        console.log(pageNumber);
+    }
+
+    const [selectedItems, setSelectedItems] = useState([])
 
     function selectAll() {
         selectedItems.length === notifications.length ? setSelectedItems([]) : setSelectedItems(notifications.map(notification => notification.id))
@@ -62,7 +92,7 @@ function NotificationTable({ searchQuery, currentNotifications }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {searchedNotification.map(({ id, title, type, stats, status }) => {
+                    {notifications.slice(indexOfFirstNotification, indexOfLastNotification).map(({ id, title, type, stats, status }) => {
                         return (
                             <tr key={id} className="border-b border-borderLight">
                                 <td className="px-6 py-4 text-sm font-medium text-fontDark text-left max-w-sm">
@@ -120,6 +150,11 @@ function NotificationTable({ searchQuery, currentNotifications }) {
                     })}
                 </tbody>
             </table>
+            <Pagination
+                notificationPerPage={notificationPerPage}
+                totalNotification={notifications.length}
+                handlePageChange={paginate}
+            />
         </div>
     )
 }

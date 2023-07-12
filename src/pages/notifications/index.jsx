@@ -1,36 +1,11 @@
-import NotificationTable from "./NotificationsTable";
+import { useContext, useState } from "react";
 import Icon from "../../assets/icons";
-import { useState, useContext } from "react";
 import { NavigationContext } from "../NavigationProvider";
-import seed from "./seed";
-import Pagination from "../../components/Pagination";
+import NotificationTable from "./NotificationsTable";
 
 
 
 function Notifications() {
-    const [notifications, setNotifications] = useState(seed);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [notificationPerPage] = useState(10);
-
-    console.log(`currentpage : ${currentPage}`);
-    // Get current Notifications
-    const indexOfLastNotification = currentPage * notificationPerPage;
-    console.log(`index of last notification: ${indexOfLastNotification}`);
-
-    const indexOfFirstNotification = indexOfLastNotification - notificationPerPage;
-    console.log(`index of first notification: ${indexOfFirstNotification}`);
-
-
-    const currentNotifications = notifications.slice(indexOfFirstNotification, indexOfLastNotification)
-
-    console.log(currentNotifications);
-
-    // Change Page
-    function paginate(pageNumber) {
-        setCurrentPage(pageNumber)
-        console.log('clicked');
-        console.log(pageNumber);
-    }
 
     // Search Query
     const [searchQuery, setSearchQuery] = useState("");
@@ -60,14 +35,7 @@ function Notifications() {
                 </div>
                 <NotificationTable
                     searchQuery={searchQuery}
-                    currentNotifications={currentNotifications}
                 />
-                <Pagination
-                    notificationPerPage={notificationPerPage}
-                    totalNotification = {notifications.length}
-                    handlePageChange={paginate}
-                />
-
             </div>
         </>
     )

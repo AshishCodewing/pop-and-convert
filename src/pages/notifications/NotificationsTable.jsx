@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Icon from "../../assets/icons";
 
 function NotificationTable({ searchQuery, currentNotifications }) {
@@ -15,6 +15,10 @@ function NotificationTable({ searchQuery, currentNotifications }) {
         )
     }
     )
+
+    useMemo(() => {
+        setNotifications(currentNotifications)
+    }, [currentNotifications])
 
     function selectAll() {
         selectedItems.length === notifications.length ? setSelectedItems([]) : setSelectedItems(notifications.map(notification => notification.id))

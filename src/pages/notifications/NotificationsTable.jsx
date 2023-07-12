@@ -1,40 +1,9 @@
 import { useState } from "react";
 import Icon from "../../assets/icons";
 
-const defaultNotifications = [
-    {
-        id: 1,
-        title: "Notification 1",
-        type: "sticky",
-        stats: 300,
-        status: "inactive",
-    },
-    {
-        id: 2,
-        title: "Notification 2",
-        type: "popup",
-        stats: 400,
-        status: "inactive",
-    },
-    {
-        id: 3,
-        title: "Notification 3",
-        type: "popup",
-        stats: 500,
-        status: "active",
-    },
-    {
-        id: 4,
-        title: "Notification 4",
-        type: "popup",
-        stats: 600,
-        status: "active",
-    }
-]
+function NotificationTable({ searchQuery, currentNotifications }) {
 
-function NotificationTable({ searchQuery }) {
-
-    const [notifications, setNotifications] = useState(defaultNotifications)
+    const [notifications, setNotifications] = useState(currentNotifications)
 
     const [selectedItems, setSelectedItems] = useState([])
 
@@ -71,7 +40,7 @@ function NotificationTable({ searchQuery }) {
 
     return (
         <div className="w-full overflow-x-auto">
-            <table className="min-w-full leading-normal cus-boxShadow">
+            <table className="min-w-full leading-normal cus-boxShadow mb-12">
                 <thead>
                     <tr className=" bg-primaryAccent text-sm border-b border-borderLight">
                         <th className="px-6 py-4 text-sm font-medium text-fontDark text-left flex gap-3 items-center">
